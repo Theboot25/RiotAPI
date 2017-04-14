@@ -19,7 +19,7 @@ if os.path.isfile('test.json') == False:
 if os.path.isfile('test.json') == True:
 	with open('test.json') as json_data:
 		d = json.load(json_data)
-		print "check";
+		#print "check";
 
 def getJSONReply(URL):
     response = urllib2.urlopen(URL);
@@ -51,7 +51,7 @@ championIDs = [];
 total = 0;
 x = 0;
 y = 0;
-while x < 10:
+while x < 350:
 	matches_list=getJSONReply(matches[x]);
 	while y < 10:
 		championIDs.append(matches_list['games'][y]['championId']);
@@ -94,16 +94,16 @@ Data = dict((k,int(v)) for k,v in stringData.iteritems());
 #If I get the error fixed, I should be able to switch this Counter(base) with Counter(d) so the program will add and then rewrite the updated file.
 
 FinalData = Counter();
-A = Counter(base);
+A = Counter(d);
 B = Counter(Data);
 
 FinalData.update(A);
 FinalData.update(B);
 
 FinalData = dict(FinalData);
-print FinalData;
+#print FinalData;
 	
-with open("test.json","a+") as outfile:
+with open("test.json","w") as outfile:
 	json.dump(FinalData, outfile);    
 
 sorted_Data = sorted(FinalData.items(), key=operator.itemgetter(1), reverse = True);
