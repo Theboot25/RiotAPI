@@ -51,7 +51,9 @@ championIDs = [];
 total = 0;
 x = 0;
 y = 0;
-while x < 350:
+
+# This number varies each day since the number of people in masters league fluctuates from 250-350.
+while x < 250:
 	matches_list=getJSONReply(matches[x]);
 	while y < 10:
 		championIDs.append(matches_list['games'][y]['championId']);
