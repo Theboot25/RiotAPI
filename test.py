@@ -15,11 +15,10 @@ if os.path.isfile('test.json') == False:
 	with open("test.json","a+") as outfile:
 		json.dump(base, outfile);
 	
-#this needs to be the new starting command, but I get an error the second time the program is run.
 if os.path.isfile('test.json') == True:
 	with open('test.json') as json_data:
 		d = json.load(json_data)
-		#print "check";
+		print "check";
 
 def getJSONReply(URL):
     response = urllib2.urlopen(URL);
@@ -51,16 +50,13 @@ championIDs = [];
 total = 0;
 x = 0;
 y = 0;
-
-# This number varies each day since the number of people in masters league fluctuates from 250-350.
-while x < 250:
+while x < 180:
 	matches_list=getJSONReply(matches[x]);
 	while y < 10:
 		championIDs.append(matches_list['games'][y]['championId']);
 		#print matches_list['games'][y]['gameId'];
 		y = y + 1;
 		z = 0;
-	#matches="https://na.api.pvp.net/api/lol/na/v1.3/game/by-summoner/" + IDs[x]+  "/recent?api_key=RGAPI-D68DB8DE-F183-4725-A052-BE53B834E641";
 	x = x + 1;
 	y = 0;
 	time.sleep(2);
@@ -93,8 +89,6 @@ stringData = dict(izip(i, i));
 Data = dict((k,int(v)) for k,v in stringData.iteritems());
 
 
-#If I get the error fixed, I should be able to switch this Counter(base) with Counter(d) so the program will add and then rewrite the updated file.
-
 FinalData = Counter();
 A = Counter(d);
 B = Counter(Data);
@@ -109,9 +103,4 @@ with open("test.json","w") as outfile:
 	json.dump(FinalData, outfile);    
 
 sorted_Data = sorted(FinalData.items(), key=operator.itemgetter(1), reverse = True);
-#print sorted_Data;
-
-
-
-#sorted_Data = sorted(Data.items(), key=operator.itemgetter(1), reverse = True);
-#print sorted_Data;
+print sorted_Data;
