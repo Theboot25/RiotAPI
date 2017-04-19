@@ -50,7 +50,7 @@ championIDs = [];
 total = 0;
 x = 0;
 y = 0;
-while x < 180:
+while x < 100:
 	matches_list=getJSONReply(matches[x]);
 	while y < 10:
 		championIDs.append(matches_list['games'][y]['championId']);
